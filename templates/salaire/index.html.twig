@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion Salaire{% endblock %}
+{% block activetask %}active{% endblock %}
+{% block h1 %}Gestion des Salaire{% endblock %}
+{% block brcr %}Gestion des Salaire{% endblock %}
+{% block section %}
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="card-title  float-left">Salaire </h3>
+                    <a type="button" class="btn btn-info btn-lg  float-right"  href="{{ path('app_salaire_new') }}">Create new</a>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Montant</th>
+                    <th>Valeur</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for salaire in salaires %}
+                    <tr>
+                        <td>{{ salaire.id }}</td>
+                        <td>{{ salaire.montant }}</td>
+                        <td>{{ salaire.valeur}}</td>
+                        <td>
+                            <a class="btn btn-info btn-sm " href="{{ path('app_salaire_show', {'id': salaire.id}) }}">Show</a>
+                            <a class="btn btn-info btn-sm " href="{{ path('app_salaire_edit', {'id': salaire.id}) }}">Edit</a>
+                            {{ include('salaire/_delete_form.html.twig') }}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block title %}Gestion Fonction{% endblock %}
+{% block activecategory %}active{% endblock %}
+{% block h1 %}Gestion des Fonction{% endblock %}
+{% block brcr %}Gestion des Fonction{% endblock %}
+{% block section %}
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="card-title  float-left">Fonction </h3>
+                    <a type="button" class="btn btn-info btn-lg  float-right"  href="{{ path('app_fonction_new') }}">Create new</a>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for fonction in fonctions %}
+                    <tr>
+                        <td>{{ fonction.id }}</td>
+                        <td>{{ fonction.fonctionName }}</td>
+                        <td>{{ fonction.fonctionDescription }}</td>
+                        <td>
+                            <a class="btn btn-info btn-sm " href="{{ path('app_fonction_show', {'id': fonction.id}) }}">Show</a>
+                            <a class="btn btn-info btn-sm " href="{{ path('app_fonction_edit', {'id': fonction.id}) }}">Edit</a>
+                            {{ include('fonction/_delete_form.html.twig') }}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+{% endblock %}

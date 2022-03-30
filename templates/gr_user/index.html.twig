@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des employé{% endblock %}
+{% block activeuser %}active{% endblock %}
+{% block h1 %}Gestion des Emplyoés{% endblock %}
+{% block brcr %}Gestion des  Emplyoés{% endblock %}
+{% block section %}
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="card-title  float-left">User</h3>
+                    <a type="button" class="btn btn-info btn-lg  float-right"  href="{{ path('app_gr_user_new') }}">Create new</a>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Nom </th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for gr_user in gr_users %}
+                    <tr>
+                        <td>{{ gr_user.id }}</td>
+                        <td>{{ gr_user.email }}</td>
+                        <td>{{ gr_user.roles ? gr_user.roles|json_encode : '' }}</td>
+                        <td>{{ gr_user.fullName }}</td>
+                        <td>
+                            <a class="btn btn-info btn-sm " href="{{ path('app_gr_user_show', {'id': gr_user.id}) }}">Show</a>
+                            <a class="btn btn-info btn-sm " href="{{ path('app_gr_user_edit', {'id': gr_user.id}) }}">Edit</a>
+                            {{ include('gr_user/_delete_form.html.twig') }}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+{% endblock %}

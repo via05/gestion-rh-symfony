@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GrUser{% endblock %}
+
+{% block body %}
+    <h1>GrUser</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ gr_user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ gr_user.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ gr_user.roles ? gr_user.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ gr_user.password }}</td>
+            </tr>
+            <tr>
+                <th>FullName</th>
+                <td>{{ gr_user.fullName }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_gr_user_index') }}">back to list</a>
+
+    <a href="{{ path('app_gr_user_edit', {'id': gr_user.id}) }}">edit</a>
+
+    {{ include('gr_user/_delete_form.html.twig') }}
+{% endblock %}
